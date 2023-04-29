@@ -10,16 +10,17 @@ import java.util.Optional;
 
 @Service
 public class MemberService {
-    private final MemberRepository memberRepository;
 
     @Autowired
+    private final MemberRepository memberRepository;
+
     public MemberService(MemberRepository memberRepository) {
 
         this.memberRepository = memberRepository;
     }
 
     // 등록
-    public Long create(Member member) {
+    public Integer create(Member member) {
         // 중복검사
         memberRepository.findByName(member.getName())
                 .ifPresent(member1 -> {throw new IllegalStateException("이미 존재하는 회원입니다.");
@@ -35,7 +36,7 @@ public class MemberService {
     }
 
     // 조회 (id)
-    public Optional<Member> findOne(Long memberId) {
+    public Optional<Member> findOne(Integer memberId) {
 
         return memberRepository.findById(memberId);
     }

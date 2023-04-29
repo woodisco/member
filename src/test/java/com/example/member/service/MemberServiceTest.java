@@ -15,7 +15,7 @@ class MemberServiceTest {
         member.setName("test");
 
         // when
-        Long saveMember = memberService.create(member);
+        Integer saveMember = memberService.create(member);
 
         // then
         Member findMember = memberService.findOne(saveMember).get();
