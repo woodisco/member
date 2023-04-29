@@ -2,11 +2,11 @@ package com.example.member.repository;
 
 import com.example.member.domain.Member;
 import org.junit.jupiter.api.Test;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-
 
 class MemoryMemberRepositoryTest {
     MemberRepository repository = new MemoryMemberRepository();

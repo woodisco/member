@@ -2,13 +2,21 @@ package com.example.member.service;
 
 import com.example.member.domain.Member;
 import com.example.member.repository.MemberRepository;
-import com.example.member.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class MemberService {
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+
+        this.memberRepository = memberRepository;
+    }
 
     // 등록
     public Long create(Member member) {
@@ -22,11 +30,13 @@ public class MemberService {
 
     // 전체 회원 조회
     public List<Member> findMembers() {
+
         return memberRepository.findAll();
     }
 
     // 조회 (id)
     public Optional<Member> findOne(Long memberId) {
+
         return memberRepository.findById(memberId);
     }
 }
